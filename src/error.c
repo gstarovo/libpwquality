@@ -149,6 +149,13 @@ pwquality_strerror(char *buf, size_t len, int rv, void *auxerror)
                 return _("The configuration file is malformed");
         case PWQ_ERROR_FATAL_FAILURE:
                 return _("Fatal failure");
+        case PWQ_ERROR_DISALLOWED_CLASS:
+                if (auxerror) {
+                    snprintf(buf, len, _("The %s class of characters is not allowed"), (const char *)auxerror);
+                    free(auxerror);
+                    return buf;
+                }
+                return _("The password contains disallowed character class");
         default:
                 return _("Unknown error");
         }
@@ -188,4 +195,3 @@ pwquality_strerror(char *buf, size_t len, int rv, void *auxerror)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
- 
