@@ -87,7 +87,7 @@ _pam_parse (pam_handle_t *pamh, struct module_options *opt,
                 } else if (!strncmp(*argv, "try_first_pass", 14)) {
                         /* for pam_get_authtok, ignore */;
                 } else if (pwquality_set_option(pwq, *argv)) {
-                        pam_syslog(pamh, LOG_ERR, 
+                        pam_syslog(pamh, LOG_ERR,
                                 "pam_parse: unknown or broken option; %s", *argv);
                 }
          }
@@ -212,7 +212,7 @@ pam_sm_chauthtok(pam_handle_t *pamh, int flags,
                         if (retval != PAM_SUCCESS || newtoken == NULL) {
                                 if (retval == PAM_AUTHTOK_ERR || newtoken == NULL)
                                         pam_syslog(pamh, LOG_INFO, "user aborted password change");
-                                else 
+                                else
                                         pam_syslog(pamh, LOG_ERR, "pam_get_authtok_noverify returned error: %s",
                                                pam_strerror(pamh, retval));
                                 pwquality_free_settings(options.pwq);
@@ -262,7 +262,7 @@ pam_sm_chauthtok(pam_handle_t *pamh, int flags,
                                         continue;
                                 if (retval == PAM_AUTHTOK_ERR || newtoken == NULL)
                                         pam_syslog(pamh, LOG_INFO, "user aborted password change");
-                                else 
+                                else
                                         pam_syslog(pamh, LOG_ERR, "pam_get_authtok_verify returned error: %s",
                                                pam_strerror(pamh, retval));
                                 pwquality_free_settings(options.pwq);
