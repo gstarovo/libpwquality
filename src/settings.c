@@ -631,7 +631,10 @@ pwquality_get_str_value(pwquality_settings_t *pwq, int setting, const char **val
                 #endif
                 break;
         case PWQ_SETTING_ALLOW_CLASSES:
-                *value = pwq->allow_classes;
+                if (pwq->allow_classes)
+                        *value = pwq->allow_classes;
+                else
+                        *value = PWQ_DEFAULT_ALLOWCLASSES;
                 break;
         default:
                 return PWQ_ERROR_NON_STR_SETTING;

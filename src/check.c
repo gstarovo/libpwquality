@@ -202,6 +202,7 @@ simple(pwquality_settings_t *pwq, const char *new, void **auxerror)
         int others = 0;
         int size;
         int i;
+        const char *allow_classes;
         enum { NONE, DIGIT, UCASE, LCASE, OTHER } prevclass = NONE;
         int sameclass = 0;
 
@@ -244,29 +245,30 @@ simple(pwquality_settings_t *pwq, const char *new, void **auxerror)
                         return PWQ_ERROR_MAX_CLASS_REPEAT;
                 }
         }
+        pwquality_get_str_value(pwq, PWQ_SETTING_ALLOW_CLASSES, &allow_classes);
         if (digits > 0) {
-            if (strpbrk(pwq->allow_classes, "d") == NULL) {
+            if (strpbrk(allow_classes, "d") == NULL) {
                 if (auxerror)
                     *auxerror = strdup("digits");
                 return PWQ_ERROR_DISALLOWED_CLASS;
             }
         }
         if (uppers > 0) {
-            if (strpbrk(pwq->allow_classes, "u") == NULL) {
+            if (strpbrk(allow_classes, "u") == NULL) {
                 if (auxerror)
                     *auxerror = strdup("uppercase");
                 return PWQ_ERROR_DISALLOWED_CLASS;
             }
         }
         if (lowers > 0) {
-            if (strpbrk(pwq->allow_classes, "l") == NULL) {
+            if (strpbrk(allow_classes, "l") == NULL) {
                 if (auxerror)
                     *auxerror = strdup("lowercase");
                 return PWQ_ERROR_DISALLOWED_CLASS;
             }
         }
         if (others > 0) {
-            if (strpbrk(pwq->allow_classes, "o") == NULL) {
+            if (strpbrk(allow_classes, "o") == NULL) {
                 if (auxerror)
                     *auxerror = strdup("other");
                 return PWQ_ERROR_DISALLOWED_CLASS;
