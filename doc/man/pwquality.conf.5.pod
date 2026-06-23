@@ -174,9 +174,10 @@ This option is off by default.
 
 =item B<allowclasses>
 
-The list of charachter classes, that are allowed in password (digits,
-uppercase, lowercase, others). "d" is for digits, "u" is for uppercase,
-"l" is for lowercase, "o" is for others. (default "ludo")
+The list of letters that represent allowed character classes that
+are allowed in a password (digits, uppercase, lowercase, others).
+"d" is for digits, "u" is for uppercase letters, "l" is for
+lowercase letters, "o" is for other characters. (default "ludo")
 
 =back
 
